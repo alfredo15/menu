@@ -55,19 +55,7 @@
 			}
 		});
 	</script>
-    
-    <!--<script>
-	$(document).ready(function() {
-        $.get("xml/men.xml",{},function(xml){
-			$('menu producto',xml).each(function(i) {
-                
-				var pname = $(this).find("producto").attr("nombre");
-				
-				alert(pname);
-            });})
-    });
-	</script>-->
-    
+       
     
 </head>
 
