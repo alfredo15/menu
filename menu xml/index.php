@@ -7,46 +7,38 @@
     <script src="js/jquery.js" language="javascript"></script>	
 	
 	<script>
+	var prodNom,confNom,progNom;
 			$.ajax({
 			url : "xml/men.xml",
 			dataType: "xml",
 			success: function(data) {
 				console.log(data);
 				
+				
+				
 				$(data).find('menu producto').each(function() {
 				
-				//var menu = $(data).find('menu producto').length;
-				
-				var menu = $(data).find('menu producto').text();
-				
-				var producto = $(this).attr('nombre');
-					
-				var config = $(this).find('configuracion').length;
-				
-				var tconfig = $(this).find('configuracion').attr('nombre');
+				 prodNom = $(this).attr('nombre');
 
-				var programa = $(this).find('programa').length;
-				
-				var tprograma = $(this).find('programa').text();
-				
-				alert('Total Nodos: '+menu+
-					  '\nProducto:'+ producto +
-					  '\nConfiguracion N°: '+config+ 
-					  '\nPrograma: '+programa);
-					  
-						
-							/*$(data).find('configuracion').each(function(producto) {
+					$('.timeline').append('<ul>'+prodNom+'</ul>');
+				 
+							$(data).find('configuracion').each(function(i,producto) {
 							
-							var nomconf = $(this).attr('nombre');
-						  
-						  var pgm = $(this).find('programa').length;
-				
-						  var tpgm = $(this).find('programa').text();
-						  
-						  alert('Nom.Conf.:'+nomconf+
-						  		'\nNom.Prog.:'+tpgm);
-                    });*/
-				
+								 confNom = $(this).attr('nombre');
+								
+								$('.timeline').append('<ul>'+confNom+'</ul>');
+								
+								$(data).find('programa').each(function(i,configuracion) {
+									
+									progNom = $(this).text();
+                                    
+									$('.timeline').append('<li>'+progNom+'</li>');
+                                });
+							
+                    });
+					
+					 //$('.timeline').append('<ul>'+prodNom+'<ul>'+confNom+'<li>'+progNom+'</li></ul></ul>');	
+					 
 				//$('.timeline').append('<ul>'+producto+'<ul>'+tconfig+'<li>'+tprograma+'</li></ul></ul>');
 
 				/*$('.timeline').append('<ul>'+id+'</ul>');
