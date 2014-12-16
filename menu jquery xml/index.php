@@ -15,37 +15,27 @@
 			success: function(data) {
 				console.log(data);
 				
-				$(data).find('producto').each(function(i) {
+				$(data).find('menu producto').each(function() {
 					
 				 prodNom = $(this).attr('nombre');
-
-					
+				 
+				 	$('.timeline ul').append('<li>'+prodNom);
 							
-							if($(this).val('producto'))
+							$(data).find('configuracion').each(function()
 							{
-								//$('.timeline ul').append('<li>'+prodNom+'</li>');
-								x = x + 1;
-								alert("Producto "+x);
-							}
-							if($(this).val('configuracion'))
-							{
-								$(data).find('configuracion').each(function(b)
-								{
-									confNom = $(this).attr('nombre');
-									$('.timeline').append('<li>'+confNom+'</li>');
-								}); 
-							}
-							/*
-							$(data).find('configuracion').each(function(b)
-							{
+								
 								confNom = $(this).attr('nombre');
-								$('.timeline').append('<li>'+confNom+'</li>');
+				
+								$('.timeline ul').append('<li>'+confNom);
 
-								$(data).find('programa').each(function(c)
+								
+								$(data).find('programa').each(function()
 								{
 									progNom = $(this).text();
-									$('.timeline').append('<li>'+progNom+'</li>');
+									
+									$('.timeline ul').append('<li>'+progNom+'</li></li></li>');
                                 });
+								
 							}); 
 					
 				//$('.timeline').append('<ul>'+prodNom+'<ul>'+confNom+'<li>'+progNom+'</li></ul></ul>');	
