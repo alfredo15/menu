@@ -19,21 +19,36 @@
 					
 				 prodNom = $(this).attr('nombre');
 				 
-				 	$('.timeline ul').append('<li>'+prodNom);
-							
-							$(data).find('configuracion').each(function()
+				//confNom = $(this).find('configuracion').attr('nombre');
+				 
+				 
+				 if($(this).find('producto'))
+				 {	
+				 	href = $(this).attr('nombre').toLowerCase();
+					href = '/' + href;
+					alert(href);
+				 }
+				 else if($(this).find('producto configuracion'))
+				 {
+					href = '/' + $(this).find('configuracion').attr('nombre');
+					href = href.toLoweCase();
+					alert(href);
+				 }
+				 else if($(this).find('configuracion programa'))
+				 {
+					 liga = href + '/' + $(this).find('programa').text();
+					 alert(liga);
+				 }
+							/*$(data).find('configuracion').each(function()
 							{
-								
 								confNom = $(this).attr('nombre');
-				
-								$('.timeline ul').append('<li>'+confNom);
-
+								
+								 alert(prodNom+' '+confNom);
 								
 								$(data).find('programa').each(function()
 								{
 									progNom = $(this).text();
 									
-									$('.timeline ul').append('<li>'+progNom+'</li></li></li>');
                                 });
 								
 							}); 
