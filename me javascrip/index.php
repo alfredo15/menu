@@ -7,6 +7,11 @@
 
 	<script>
 	
+	var lista = document.createElement('ul');
+    var item = document.createElement('li');
+	
+    lista.appendChild(item);
+	
 	function loadXMLDoc(filename)
 	{
 		if (window.XMLHttpRequest)
@@ -26,8 +31,8 @@
 	
 	var producto = xmlDoc.getElementsByTagName("producto");
 	
+	document.write("Longitud: "+producto.length);
 
-	
 	
 	document.write("<ul>");
 	for ( a = 0 ; a < producto.length ; a++)
@@ -38,6 +43,7 @@
 		
 		document.write("<li>");
 		document.write(aProd.value);
+
 		//alert('NmPro: '+ aProd.value);
 		
 			var control = xmlDoc.getElementsByTagName("configuracion");

@@ -15,51 +15,70 @@
 			success: function(data) {
 				console.log(data);
 				
-				$(data).find('menu producto').each(function() {
+				$(data).find('menu producto').each(function() 
+				
+				{
+					prodNom = $(this).attr('nombre');
+				 
+					confNom = $(this).find('configuracion').attr('nombre');
 					
-				 prodNom = $(this).attr('nombre');
-				 
-				//confNom = $(this).find('configuracion').attr('nombre');
-				 
-				 
-				 if($(this).find('producto'))
-				 {	
-				 	href = $(this).attr('nombre').toLowerCase();
-					href = '/' + href;
-					alert(href);
-				 }
-				 else if($(this).find('producto configuracion'))
-				 {
-					href = '/' + $(this).find('configuracion').attr('nombre');
-					href = href.toLoweCase();
-					alert(href);
-				 }
-				 else if($(this).find('configuracion programa'))
-				 {
-					 liga = href + '/' + $(this).find('programa').text();
-					 alert(liga);
-				 }
-							/*$(data).find('configuracion').each(function()
+					
+	
+					 if($(this).find('producto'))
+					 {
+						 hrefm = $(this).attr('nombre').toLowerCase();
+						 hrefm = '/' + hrefm;
+					 }
+					 
+					 
+					 
+					 else if($(this).find('configuracion programa'))
+					 {
+						 liga = $(this).find('programa').text().toLowerCase();
+						 liga = href + '/' + liga;
+						 //alert(liga);
+					 }
+					 
+					 $('.timeline ul').append('<li><a href="'+hrefm+'">'+prodNom+'</a></li>');
+					 		
+							$(data).find('configuracion').each(function()
 							{
-								confNom = $(this).attr('nombre');
+							
+							confNom = $(this).attr('nombre');
 								
-								 alert(prodNom+' '+confNom);
+							if($(this).find('configuracion'))
+							{
+								href = $(this).attr('nombre').toLowerCase();
+								href = '/' + href;
+								href = hrefm + href;
+								alert(href);
+								
+								 $('.timeline ul li').append('<ul><li><a href="'+href+'">'+confNom+'</a></li></ul>');
+							}
+								
+								
+								//alert(prodNom+' '+confNom);
+								
+								
 								
 								$(data).find('programa').each(function()
 								{
 									progNom = $(this).text();
 									
-                                });
+									
+								});
+								
 								
 							}); 
+				alert(hrefm);
 					
-				//$('.timeline').append('<ul>'+prodNom+'<ul>'+confNom+'<li>'+progNom+'</li></ul></ul>');	
+					
+				//$('.timeline').append('<ul>'+prodNom+'<ul>'+confNom+'<li>'+confNom+'</li></ul></ul>');	
 				//$('.timeline').append('<ul>'+producto+'<ul>'+tconfig+'<li>'+tprograma+'</li></ul></ul>');
-				/*$('.timeline').append('<ul>'+id+'</ul>');
-				$('.timeline').append('<li>'+producto+'</li>'); */
+				
+				/*$('.timeline').append('<li>'+producto+'</li>'); */
 				/*$('.timeline ul').append($('<li />',{configuracion : + producto,nombre : + id}));*/
                 });
-				
 				
 				
 			},
@@ -69,7 +88,7 @@
 			}
 		});
 	</script>
-       
+      
     
 </head>
 

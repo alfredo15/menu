@@ -13,7 +13,7 @@
 			$sG = ""; $az = ""; $c3rgb = ""; $nom_emp = "";
 
     		foreach($xml->WSDL as $item){
-     		$sU .= $item->superUsuario;
+     		$sU .= $item->superUsuario.'<br>';
 			$pr .= $item->privilegios;
 			$pp .= $item->properties;
 			$pc .= $item->procesos;
@@ -24,9 +24,10 @@
 			$c3rgb .= $item->color3_rgb;
 			$sG .= $item->seguridad;
 			$az .= $item->autoriza;
+			
 			}
 			
-			echo "SU:".$sU;
+			echo "SU:".$sU.'<br>';
 ?>
 </body>
 </html>
