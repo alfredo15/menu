@@ -7,7 +7,7 @@
     <script src="js/jquery.js" language="javascript"></script>	
 	
 	<script>
-	var prodNom,confNom,progNom;
+	var prodNom,confNom,progNom,hrefm,liga,href,progNom;
 	var x = 0;
 			$.ajax({
 			url : "xml/men.xml",
@@ -15,62 +15,79 @@
 			success: function(data) {
 				console.log(data);
 				
+				//Producto
 				$(data).find('menu producto').each(function() 
 				
 				{
 					prodNom = $(this).attr('nombre');
-				 
+					alert('Producto: '+prodNom);
 					confNom = $(this).find('configuracion').attr('nombre');
 					
-					
-	
-					 if($(this).find('producto'))
+					$('.timeline ul').append('<li><a href="'+hrefm+'">'+prodNom+'</a></li>');
+					if(confNom !== undefined)
+					{
+						//Configuracion 
+						$(data).find('configuracion').each(function()
+						{
+							confNom = $(this).attr('nombre');
+							if(confNom !== undefined)
+							{
+							alert('Config.: '+confNom);
+							$('.timeline ul li').append('<ul><li><a href="'+hrefm+'">'+confNom+'</a></li></ul>');
+							}
+						});
+						
+					}
+					 /*if($(this).find('producto'))
 					 {
 						 hrefm = $(this).attr('nombre').toLowerCase();
 						 hrefm = '/' + hrefm;
-					 }
+					 }*/
 					 
 					 
 					 
-					 else if($(this).find('configuracion programa'))
+					 /*else if($(this).find('configuracion programa'))
 					 {
 						 liga = $(this).find('programa').text().toLowerCase();
 						 liga = href + '/' + liga;
 						 //alert(liga);
-					 }
+					 }*/
 					 
-					 $('.timeline ul').append('<li><a href="'+hrefm+'">'+prodNom+'</a></li>');
+					 
 					 		
-							$(data).find('configuracion').each(function()
+							/*$(data).find('configuracion').each(function()
 							{
 							
-							confNom = $(this).attr('nombre');
+							if($(this).attr('nombre') !== undefined)
+							{
+
+							confNom = $(this).attr('nombre');	
+							$('.timeline ul li').append('<ul><li>'+confNom+'</li></ul>');
+							alert(confNom);
 								
-							if($(this).find('configuracion'))
+							}
+							/*if($(this).find('configuracion') && ($(this).attr('nombre') !== undefined))
 							{
 								href = $(this).attr('nombre').toLowerCase();
 								href = '/' + href;
 								href = hrefm + href;
-								alert(href);
+								//alert(href);
 								
-								 $('.timeline ul li').append('<ul><li><a href="'+href+'">'+confNom+'</a></li></ul>');
-							}
-								
-								
+							}*/
 								//alert(prodNom+' '+confNom);
 								
-								
-								
-								$(data).find('programa').each(function()
+								/*$(data).find('programa').each(function()
 								{
 									progNom = $(this).text();
 									
 									
-								});
+								});*/
 								
 								
-							}); 
-				alert(hrefm);
+							//});
+							
+							//$('.timeline ul li').append('<ul><li><a href="'+href+'">'+confNom+'</a></li></ul>');				
+				//alert(hrefm);
 					
 					
 				//$('.timeline').append('<ul>'+prodNom+'<ul>'+confNom+'<li>'+confNom+'</li></ul></ul>');	
@@ -78,6 +95,7 @@
 				
 				/*$('.timeline').append('<li>'+producto+'</li>'); */
 				/*$('.timeline ul').append($('<li />',{configuracion : + producto,nombre : + id}));*/
+				return href;
                 });
 				
 				
