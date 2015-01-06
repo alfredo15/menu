@@ -30,9 +30,10 @@
 	</producto>
 	
 	<producto nombre="Switch">
-		<configuracion>
-			<programa>
-			</programa>
+		<configuracion nombre="Configuracion">
+			<programa>Control</programa>
+			<programa>Procesos</programa>
+			<programa>Propiedades</programa>
 		</configuracion>
 	</producto>
 

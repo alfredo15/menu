@@ -3,103 +3,108 @@
 <head>
 <meta charset="utf-8">
 <title>Documento sin título</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<link type="image/x-icon " href="img/ks-clasico icono.png" rel="icon"/>
+
+
+<script src="js/jquery.js" language="javascript"></script>	
+
+<link rel="stylesheet" href="estilos/bootstrap.min.css">
+
+<script src="js/bootstrap.min.js"></script>
 	
-    <script src="js/jquery.js" language="javascript"></script>	
+    
 	
 	<script>
-	var prodNom,confNom,progNom,hrefm,liga,href,progNom;
-	var x = 0;
 			$.ajax({
 			url : "xml/men.xml",
 			dataType: "xml",
-			success: function(data) {
+			success: function(data)
+			{
+				var ul_main=$("<ul />");
 				console.log(data);
-				
-				//Producto
-				$(data).find('menu producto').each(function() 
-				
+				$(data).find('menu producto').each(function(i) 
 				{
-					prodNom = $(this).attr('nombre');
-					alert('Producto: '+prodNom);
-					confNom = $(this).find('configuracion').attr('nombre');
 					
-					$('.timeline ul').append('<li><a href="'+hrefm+'">'+prodNom+'</a></li>');
-					if(confNom !== undefined)
-					{
-						//Configuracion 
-						$(data).find('configuracion').each(function()
+					if($(this).children().length)
+                    {
+						if($(this).find('producto'))
 						{
-							confNom = $(this).attr('nombre');
-							if(confNom !== undefined)
-							{
-							alert('Config.: '+confNom);
-							$('.timeline ul li').append('<ul><li><a href="'+hrefm+'">'+confNom+'</a></li></ul>');
-							}
-						});
-						
-					}
-					 /*if($(this).find('producto'))
-					 {
-						 hrefm = $(this).attr('nombre').toLowerCase();
-						 hrefm = '/' + hrefm;
-					 }*/
-					 
-					 
-					 
-					 /*else if($(this).find('configuracion programa'))
-					 {
-						 liga = $(this).find('programa').text().toLowerCase();
-						 liga = href + '/' + liga;
-						 //alert(liga);
-					 }*/
-					 
-					 
-					 		
-							/*$(data).find('configuracion').each(function()
-							{
-							
-							if($(this).attr('nombre') !== undefined)
-							{
+							hrf = $(this).attr('nombre').toLowerCase();
+							hrf = hrf;
+							hrf = $.trim(hrf);
+						}
 
-							confNom = $(this).attr('nombre');	
-							$('.timeline ul li').append('<ul><li>'+confNom+'</li></ul>');
-							alert(confNom);
-								
-							}
-							/*if($(this).find('configuracion') && ($(this).attr('nombre') !== undefined))
-							{
-								href = $(this).attr('nombre').toLowerCase();
-								href = '/' + href;
-								href = hrefm + href;
-								//alert(href);
-								
-							}*/
-								//alert(prodNom+' '+confNom);
-								
-								/*$(data).find('programa').each(function()
-								{
-									progNom = $(this).text();
-									
-									
-								});*/
-								
-								
-							//});
+                        var ulSub = $("<ul />");
+						
+						$(this).children().each(function()
+						{
 							
-							//$('.timeline ul li').append('<ul><li><a href="'+href+'">'+confNom+'</a></li></ul>');				
-				//alert(hrefm);
+							if($(this).attr("nombre") !== undefined)
+							{
+								if($(this).attr("nombre"))
+								{
+									if($(this).attr("nombre") !== undefined)
+									{
+										href = $(this).attr("nombre").toLowerCase();
+										href = hrf+"/"+href;
+									}
+								}
+								ulSub.append("<li><a href='"+href+"'>"+$(this).attr("nombre")+"</a></li>");
+							}
+							
+							else
+							{
+								if($(this).text())
+								{
+									if($(this).text() !== undefined)
+									{
+										href = $(this).text().toLowerCase();
+										href = hrf+"/"+href;
+									}
+								}
+								
+								
+								ulSub.append("<li><a href='"+href+"'>"+$(this).text()+"</a></li>");
+
+							}
+							
+							
+							if($(this).children().length)
+							{
+								
+								$(this).children().each(function()
+								{
+									if($(this).text())
+									{
+										if($(this).text() !== undefined)
+										{
+											lin = $(this).text().toLowerCase();
+											lin = href+"/"+lin;
+										}
+									}
+									ulSub.append("<ul><li><a href='"+lin+"'>"+$(this).text()+"</a></li></ul>");
+								});
+								
+									//ulSub.append("<li><a>"+$(this).text()+"</a></li>");
+							}
+                        });
+							
+							var li = $("<li><a href="+hrf+">"+$(this).attr("nombre")+"</a></li>");
+							ul_main.append(li.append(ulSub))
+							
+                    }
 					
-					
-				//$('.timeline').append('<ul>'+prodNom+'<ul>'+confNom+'<li>'+confNom+'</li></ul></ul>');	
-				//$('.timeline').append('<ul>'+producto+'<ul>'+tconfig+'<li>'+tprograma+'</li></ul></ul>');
-				
-				/*$('.timeline').append('<li>'+producto+'</li>'); */
-				/*$('.timeline ul').append($('<li />',{configuracion : + producto,nombre : + id}));*/
-				return href;
+                    else 
+						ul_main.append ("<li><a href=>"+$(this).text()+"</a></li>");
                 });
 				
-				
+				$(".timeline").append(ul_main);
 			},
+			
 			error: function()
 			{
 				$(".timeline").text("No se pudeo obtener la peticion.")
@@ -112,11 +117,7 @@
 
 <body>
 
-
-    <div class="timeline">
-    	<ul>
-        </ul>
-    </div>
+    <div class="timeline"></div>
     
     
 </body>
