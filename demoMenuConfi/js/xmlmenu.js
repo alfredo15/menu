@@ -62,7 +62,6 @@
 								});
 								ulSub.append(l.append(ulS));
                         });
-							//var li = $("<li id='li_menu' class='has-sub'><a href='"+hrf+"'>1"+$(this).attr("nombre")+"</a></li>");
 							li = $("<li class='has-sub'><a href='"+hrf+"'>"+$(this).attr("nombre")+"</a></li>");
 							
 							ul_main.append(li.append(ulSub))
