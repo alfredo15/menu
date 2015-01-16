@@ -9,33 +9,16 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
+		<link rel="stylesheet" type="text/css" href="estilos/styles.css">
 		<script src="js/jquery.js" language="javascript"></script>
-        <link rel="stylesheet" type="text/css" href="estilos/reset.css">
-        <link rel="stylesheet" type="text/css" href="estilos/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:300,400">
-		<script type="text/javascript" src="js/menuresponsive.js"></script>	
-        <script type="text/javascript" src="js/xmlmenu.js"></script>
-
+		<script type="text/javascript" src="js/xmlmenu.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+    
 </head>
 <body>
 
-<header class="container">
+<div id='cssmenu'></div>
 
-	<nav class="navbar ">
-		<nav class="container-fluid">
-				
-                <nav class="navbar-header">
-			      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">			        
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			      </button>
-			    </nav>
-		    <div class="timeline collapse navbar-collapse" id="menu"></div>
-		</nav>
-    </nav>
-    
-</header>
-
+</div>
 </body>
 </html>

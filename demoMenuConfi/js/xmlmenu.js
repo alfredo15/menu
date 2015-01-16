@@ -3,11 +3,12 @@
 			dataType: "xml",
 			success: function(data)
 			{
-				var ul_main=$("<ul class='navbar-nav' />");
+				var ul_main=$('<ul/>');
+				
 				console.log(data);
 				$(data).find('menu producto').each(function(i) 
 				{
-					if($(this).children().length)
+					if($(this).children().length > 1)
                     {
 						if($(this).find('producto'))
 						{
@@ -16,11 +17,10 @@
 							hrf = $.trim(hrf);
 						}
 												
-                        var ulSub = $("<ul class='dropdown-menu'/>");
+                        var ulSub = $("<ul>");
 						$(this).children().each(function()
 						{
-						
-						
+							
 							if($(this).attr("nombre") !== undefined)
 							{
 										if($(this).attr("nombre"))
@@ -31,8 +31,7 @@
 												href = hrf+"/"+href;
 											}
 										}
-																		
-								l = $("<li class='dropdown'><a href='"+href+"' class='dropdown-toggle'>"+$(this).attr("nombre")+"<b class='caret right'></b></a></li>");
+								l = $("<li class='has-sub'><a href='"+href+"'>"+$(this).attr("nombre")+"</a></li>");
 							}
 							else if($(this).text())
 							{
@@ -45,10 +44,10 @@
 											}
 										}
 								
-								l = $("<li class='dropdown'><a href='"+href+"' class='dropdown-toggle'>"+$(this).text()+"<b class='caret right'></b></a></li>");
+								l = $("<li class='has-sub'><a href='"+href+"'>"+$(this).text()+"</a></li>");
 							}
 							
-								var ulS = $("<ul class='dropdown-menu'/>");
+								var ulS = $("<ul>");
 								$(this).children().each(function()
 								{
 										if($(this).text())
@@ -63,14 +62,16 @@
 								});
 								ulSub.append(l.append(ulS));
                         });
-							var li = $("<li class='dropdown'><a href='"+hrf+"' class='dropdown-toggle'>"+$(this).attr("nombre")+"<b class='caret'></a></li>");
+							//var li = $("<li id='li_menu' class='has-sub'><a href='"+hrf+"'>1"+$(this).attr("nombre")+"</a></li>");
+							li = $("<li class='has-sub'><a href='"+hrf+"'>"+$(this).attr("nombre")+"</a></li>");
+							
 							ul_main.append(li.append(ulSub))
                     }
                 });
-				$(".timeline").append(ul_main);
+				$("#cssmenu").append(ul_main);
 			},
 			error: function()
 			{
-				$(".timeline").text("No se pudeo obtener la peticion.")
+				$("#cssmenu").text("No se pudeo obtener la peticion.")
 			}
 		});
